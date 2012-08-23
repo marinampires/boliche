@@ -1,22 +1,33 @@
 def calcula(jogada):
     pontuacao = 0
-    ponto_anterior = 0
-    ponto_mais_que_anterior = 0
+    ponto_anterior = ''
+    ponto_mais_que_anterior = ''
     num_jogada = 1
+    valor_jogada = 0
+    valor_jogada_anterior = 0
 
     for ponto in jogada:
+        print 'Ponto: %s' % ponto
         if(ponto == "/"):
-            pontuacao += 10 - int(ponto_anterior)
+            valor_jogada = 10 - int(valor_jogada_anterior)
         elif(ponto == "X"):
             num_jogada += 1
-            pontuacao += 10
+            valor_jogada = 10
         elif(ponto != "-"):
-            pontuacao += int(ponto)
-            if(ponto_anterior == "X" or ponto_mais_que_anterior == "X" or ponto_anterior == "/" and jogada and num_jogada < 20):
-                pontuacao += int(ponto)
+            valor_jogada = int(ponto)
         else:
-            ponto = 0
+            valor_jogada = 0
+
+        print 'Ponto: %d' % valor_jogada
+        print 'num_jogada: %d' % num_jogada
+
+        pontuacao += valor_jogada
+        if((ponto_anterior == "X" or ponto_mais_que_anterior == "X" or ponto_anterior == "/") and num_jogada < 20):
+            pontuacao += valor_jogada
+
+        print 'Pontuacao: %d' % pontuacao
         ponto_mais_que_anterior = ponto_anterior
         ponto_anterior = ponto
+        valor_jogada_anterior = valor_jogada
         num_jogada += 1
     return pontuacao
