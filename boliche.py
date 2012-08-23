@@ -7,7 +7,6 @@ def calcula(jogada):
     valor_jogada_anterior = 0
 
     for ponto in jogada:
-        print 'Ponto: %s' % ponto
         if(ponto == "/"):
             valor_jogada = 10 - int(valor_jogada_anterior)
         elif(ponto == "X"):
@@ -18,14 +17,10 @@ def calcula(jogada):
         else:
             valor_jogada = 0
 
-        print 'Ponto: %d' % valor_jogada
-        print 'num_jogada: %d' % num_jogada
-
         pontuacao += valor_jogada
         if((ponto_anterior == "X" or ponto_mais_que_anterior == "X" or ponto_anterior == "/") and num_jogada < 20):
             pontuacao += valor_jogada
 
-        print 'Pontuacao: %d' % pontuacao
         ponto_mais_que_anterior = ponto_anterior
         ponto_anterior = ponto
         valor_jogada_anterior = valor_jogada
